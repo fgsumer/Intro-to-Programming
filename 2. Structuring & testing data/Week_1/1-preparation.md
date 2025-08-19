@@ -2,7 +2,7 @@
 
 #### Learning objectives
 
-- [x] Define a computer
+- [ ] Define a computer
 
 Modern computers are complicated: it would be too difficult and time-consuming to list all the components that make up a modern computer. So to build our mental model, we will use this simple definition of a computer:
 
