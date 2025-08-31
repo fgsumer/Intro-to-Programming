@@ -871,7 +871,7 @@ We’re calling `convertToPercentage` twice: first with an argument of `0.5` and
 
 Think of a function as a box. We put data in and then act on it using the rules in the box; at the end, the box gives us new data back. In programming we say that we pass arguments into a function, the function’s code is executed and we get a return value after the function has finished executing. Here’s a diagram:
 
-![Function diagram](images/diagrama1.png)
+![Alt text](images/diagrama1.png "Image title")
 
 
 
