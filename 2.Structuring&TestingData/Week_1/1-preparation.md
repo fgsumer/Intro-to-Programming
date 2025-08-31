@@ -818,6 +818,67 @@ Play computer and step through the following code to check why we get the output
 [Step trough the code here](
 https://pythontutor.com/visualize.html#code=const%20decimalNumber%20%3D%200.5%3B%0A%0Afunction%20convertToPercentage%28%29%20%7B%0A%20%20const%20percentage%20%3D%20%60%24%7BdecimalNumber%20*%20100%7D%25%60%3B%0A%20%20return%20percentage%3B%0A%7D%0A%0Aconst%20output1%20%3D%20convertToPercentage%280.5%29%3B%0Aconst%20output2%20%3D%20convertToPercentage%280.231%29%3B%0A%0Aconsole.log%28output1%29%3B%0Aconsole.log%28output2%29%3B&cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false)
 
+## Parameterising a function
+
+### Learning objectives
+
+- [ ] Define a parameter
+- [ ] Identify the value assigned to a parameter when a function is invoked
+- [ ] Differentiate between parameters and arguments
+- [ ] Invoke a given function with an appropriate argument to produce some target output
+- [ ] Reuse code to perform the same calculation with different inputs
+
+At the moment, decimalNumber is a variable in the global scope of our program:
+
+```js
+const decimalNumber = 0.5; // defined in the global scope of our program
+
+function convertToPercentage() {
+  const percentage = `${decimalNumber * 100}%`;
+  return percentage;
+}
+
+const output1 = convertToPercentage(0.5);
+const output2 = convertToPercentage(0.231);
+```
+
+So long as decimalNumber is always in the global scope, convertToPercentage will always go to the global scope to get the value of decimalNumber.
+
+However, we want convertToPercentage to work for any input we pass to it.
+##
+
+To make a function work for any number, we need to handle inputs. We do this using a parameter (
+A parameter is a special kind of variable: its value is defined by the caller.)
+
+`decimalNumber` is still a variable - but as a parameter we don’t assign `decimalNumber` a value inside the function’s body. It is a placeholder. When we call the function, we pass an input to the function, and the value of that input is assigned to the `decimalNumber` parameter when the function is called. This happens automatically.
+
+We can add a parameter `decimalNumber` to our function:
+
+```js
+function convertToPercentage(decimalNumber) {
+  // now decimalNumber is a parameter of convertToPercentage
+  const percentage = `${decimalNumber * 100}%`;
+  return percentage;
+}
+
+const output1 = convertToPercentage(0.5);
+const output2 = convertToPercentage(0.231);
+```
+
+In the example above, we’re calling `convertToPercentage` twice: first with an input of `0.5` and second with an input of `0.231`. In JavaScript instead of input we use the word argument (Arguments are inputs given to a function inside (). An argument means an input.).
+
+We’re calling `convertToPercentage` twice: first with an argument of `0.5` and next with an argument of `0.231`.
+
+Think of a function as a box. We put data in and then act on it using the rules in the box; at the end, the box gives us new data back. In programming we say that we pass arguments into a function, the function’s code is executed and we get a return value after the function has finished executing. Here’s a diagram:
+
+![Function diagram](images/diagrama1.png)
+
+
+
+
+
+
+
 
 
 
