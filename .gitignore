@@ -1,0 +1,16 @@
+.DS_Store
+node_modules
+dist
+.env
+.vscode
+*.log
+.idea
+*.iml
+*.class
+*.jar
+*.war
+*.ear
+*.swp
+*~
+*.bak
+*.tmp
