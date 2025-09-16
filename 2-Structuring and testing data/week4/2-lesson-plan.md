@@ -1,13 +1,3 @@
-Of course! Here is a complete lesson plan in Markdown format, structured exactly as you requested. It's ready to be added directly to a GitHub repository.
-
-# JavaScript Practice Lesson for Beginners
-
-A hands-on session to reinforce core JavaScript concepts through examples and exercises.
-
----
-
-## Topics to Practice
-
 *   **Variables**
     *   [Code Inspiration](#variables-code-inspiration)
     *   [Exercises](#variables-exercises)

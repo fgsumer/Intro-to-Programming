@@ -1,7 +1,3 @@
-# JavaScript Practice Lesson: From Basics to Testing
-
-## Topics to Practice
-
 - [1. Ordinal Numbers](#1-ordinal-numbers)
   - [Code Inspiration](#ordinal-numbers-code-inspiration)
   - [Exercises](#ordinal-numbers-exercises)

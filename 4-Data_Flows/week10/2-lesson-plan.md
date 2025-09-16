@@ -1,7 +1,3 @@
-# JavaScript Practice Lesson: DOM Manipulation and Components
-
-## Topics to Practice
-
 * [Rendering Data as UI](#rendering-data-as-ui)
   * [Code Inspiration](#rendering-data-code-inspiration)
   * [Exercises](#rendering-data-exercises)

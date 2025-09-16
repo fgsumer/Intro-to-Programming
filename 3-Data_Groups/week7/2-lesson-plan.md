@@ -1,7 +1,3 @@
-# JavaScript Practice Lesson for Beginners
-
-## Topics to Practice
-
 - [Arrays](#arrays)
   - [Code Inspiration](#arrays-code-inspiration)
   - [Exercises](#arrays-exercises)

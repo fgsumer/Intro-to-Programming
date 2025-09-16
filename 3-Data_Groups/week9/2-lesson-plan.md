@@ -1,6 +1,3 @@
-# JavaScript Practice Lesson: Interactive Character Counter
-
-## Topics to Practice
 * [Implementing a Character Limit](#implementing-a-character-limit)
   * [Code Inspiration](#code-inspiration-implementing-a-character-limit)
   * [Exercises](#exercises-implementing-a-character-limit)

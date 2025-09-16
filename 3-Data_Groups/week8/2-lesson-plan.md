@@ -1,6 +1,3 @@
-# JavaScript Practice Lesson: Working with Objects and Query Strings
-
-## Topics to Practice
 - [Accessing Properties](#accessing-properties)
   - [Code Inspiration](#accessing-properties-code-inspiration)
   - [Exercises](#accessing-properties-exercises)

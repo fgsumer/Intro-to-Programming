@@ -301,7 +301,7 @@ console.log(area(5, 10));
 2. Write a function that calculates the average of three numbers.
 3. Write a function that tells if a number is even.
 
-👉 **Pedagogical Tip**: Work in pairs, explain your code aloud. Teaching strengthens memory!
+👉 **Tip**: Work in pairs, explain your code aloud. Teaching strengthens memory!
 
 ---
 

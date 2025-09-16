@@ -1,6 +1,3 @@
-# JavaScript Asynchronous Programming Practice
-
-## Topics to Practice
 * [Synchronous Execution](#synchronous-execution)
   * [Code Inspiration](#synchronous-code-inspiration)
   * [Exercises](#synchronous-exercises)

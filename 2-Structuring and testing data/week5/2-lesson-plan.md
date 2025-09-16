@@ -1,7 +1,3 @@
-# JavaScript Practice Lesson for Beginners
-
-## Topics to Practice
-
 * **Comparison**
   - [Code Inspiration](#comparison-code-inspiration)
   - [Exercises](#comparison-exercises)

@@ -1,4 +1,4 @@
-# JavaScript Intermediate Homework: The String Validator
+# JavaScript Homework: The String Validator
 
 ## Exercise 1: Build the Core Validator Function
 
