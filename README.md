@@ -22,18 +22,18 @@ In this number_of_weeks week module we will build a MASTERCLASS application from
 ## Planning
 | Week | Topic                                                                                                             | Preparation                         | Lesson plan                         | Homework                      |
 | ---- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ----------------------------------- | ----------------------------- |
-| 1.   | **MASTERCLASS Topic#1** <br>  SubTopic#1.1 <br> SubTopic#1.2 <br> SubTopic#1.3 | [Preparation](week1/preparation.md) | [Lesson plan](week1/lesson-plan.md) | [Homework](week1/homework.md) |
-| 2.   | **MASTERCLASS Topic#2** <br> SubTopic#2.1 <br> SubTopic#2.2 <br> SubTopic#2.3                                                      | [Preparation](week2/preparation.md) | [Lesson plan](week2/lesson-plan.md) | [Homework](week2/homework.md) |
-| 3.   | **MASTERCLASS Topic#3** <br> SubTopic#3.1 <br> SubTopic#3.2 <br> SubTopic#3.3                                   | [Preparation](week3/preparation.md) | [Lesson plan](week3/lesson-plan.md) | [Homework](week3/homework.md) |
-| 4.   | **MASTERCLASS Topic#4** <br> SubTopic#4.1 <br> SubTopic#4.2 <br> SubTopic#4.3                                     | [Preparation](week4/preparation.md) | [Lesson plan](week4/lesson-plan.md) | [Homework](week4/homework.md) |
-| 5.   | **MASTERCLASS Topic#1** <br>  SubTopic#1.1 <br> SubTopic#1.2 <br> SubTopic#1.3 | [Preparation](week1/preparation.md) | [Lesson plan](week1/lesson-plan.md) | [Homework](week1/homework.md) |
-| 5.   | **MASTERCLASS Topic#2** <br> SubTopic#2.1 <br> SubTopic#2.2 <br> SubTopic#2.3                                                      | [Preparation](week2/preparation.md) | [Lesson plan](week2/lesson-plan.md) | [Homework](week2/homework.md) |
-| 7.   | **MASTERCLASS Topic#3** <br> SubTopic#3.1 <br> SubTopic#3.2 <br> SubTopic#3.3                                   | [Preparation](week3/preparation.md) | [Lesson plan](week3/lesson-plan.md) | [Homework](week3/homework.md) |
-| 8.   | **MASTERCLASS Topic#4** <br> SubTopic#4.1 <br> SubTopic#4.2 <br> SubTopic#4.3                                     | [Preparation](week4/preparation.md) | [Lesson plan](week4/lesson-plan.md) | [Homework](week4/homework.md) |
-| 9.   | **MASTERCLASS Topic#1** <br>  SubTopic#1.1 <br> SubTopic#1.2 <br> SubTopic#1.3 | [Preparation](week1/preparation.md) | [Lesson plan](week1/lesson-plan.md) | [Homework](week1/homework.md) |
-| 10.   | **MASTERCLASS Topic#2** <br> SubTopic#2.1 <br> SubTopic#2.2 <br> SubTopic#2.3                                                      | [Preparation](week2/preparation.md) | [Lesson plan](week2/lesson-plan.md) | [Homework](week2/homework.md) |
-| 11.   | **MASTERCLASS Topic#3** <br> SubTopic#3.1 <br> SubTopic#3.2 <br> SubTopic#3.3                                   | [Preparation](week3/preparation.md) | [Lesson plan](week3/lesson-plan.md) | [Homework](week3/homework.md) |
-| 12.   | **MASTERCLASS Topic#4** <br> SubTopic#4.1 <br> SubTopic#4.2 <br> SubTopic#4.3                                     | [Preparation](week4/preparation.md) | [Lesson plan](week4/lesson-plan.md) | [Homework](week4/homework.md) |
+| 1.   | **Onboarding**  | [Preparation](week1/preparation.md) | [Lesson plan](week1/lesson-plan.md) | [Homework](week1/homework.md) |
+| 2.   | **Onboarding**  | [Preparation](week2/preparation.md) | [Lesson plan](week2/lesson-plan.md) | [Homework](week2/homework.md) |
+| 3.   | **Onboarding**  | [Preparation](week3/preparation.md) | [Lesson plan](week3/lesson-plan.md) | [Homework](week3/homework.md) |
+| 4.   | **Programming Fundamentals** | [Preparation](week4/preparation.md) | [Lesson plan](week4/lesson-plan.md) | [Homework](week4/homework.md) |
+| 5.   | **Comparisons, assertions and breaking down problems** | [Preparation](week1/preparation.md) | [Lesson plan](week1/lesson-plan.md) | [Homework](week1/homework.md) |
+| 5.   | **Test cases with Jest** | [Preparation](week2/preparation.md) | [Lesson plan](week2/lesson-plan.md) | [Homework](week2/homework.md) |
+| 7.   | **Grouping data: Arrays and Loops** | [Preparation](week3/preparation.md) | [Lesson plan](week3/lesson-plan.md) | [Homework](week3/homework.md) |
+| 8.   | **Grouping data: Objects** | [Preparation](week4/preparation.md) | [Lesson plan](week4/lesson-plan.md) | [Homework](week4/homework.md) |
+| 9.   | **The DOM** | [Preparation](week1/preparation.md) | [Lesson plan](week1/lesson-plan.md) | [Homework](week1/homework.md) |
+| 10.  | **UI Components** | [Preparation](week2/preparation.md) | [Lesson plan](week2/lesson-plan.md) | [Homework](week2/homework.md) |
+| 11.  | **State Rendering** | [Preparation](week3/preparation.md) | [Lesson plan](week3/lesson-plan.md) | [Homework](week3/homework.md) |
+| 12.   | **Fetch & Asynchronous** | [Preparation](week4/preparation.md) | [Lesson plan](week4/lesson-plan.md) | [Homework](week4/homework.md) |
 
 # External Documentation 
 
