@@ -1,46 +1,37 @@
-
-
 # Intro to Programming
 
-In this number_of_weeks week module we will build a MASTERCLASS application from scratch
+## Objective
+The objective of this course is to give people with no prior software development experience an introduction to programming and thinking about data. 
 
-## Prerequisites
+Primarily this is achieved by teaching programming concepts with JavaScript and Python and data concepts with SQL in spreadsheets. We also focus on professional development skills such as communicating effectively and working well on a team.
 
-
-
-## Preparation
-
-
-
-## Environment setup
-
-
-
-
+A pre-requisite of this module is having completed Hack Your Future’s Intro to Digital module which teaches the basics of HTML and CSS.
 
 
 ## Planning
 | Week | Topic                                                                                                             | Preparation                         | Lesson plan                         | Homework                      |
 | ---- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ----------------------------------- | ----------------------------- |
-| 1.   | **Onboarding**  | [Preparation](week1/preparation.md) | [Lesson plan](week1/lesson-plan.md) | [Homework](week1/homework.md) |
-| 2.   | **Onboarding**  | [Preparation](week2/preparation.md) | [Lesson plan](week2/lesson-plan.md) | [Homework](week2/homework.md) |
-| 3.   | **Onboarding**  | [Preparation](week3/preparation.md) | [Lesson plan](week3/lesson-plan.md) | [Homework](week3/homework.md) |
-| 4.   | **Programming Fundamentals** | [Preparation](week4/preparation.md) | [Lesson plan](week4/lesson-plan.md) | [Homework](week4/homework.md) |
-| 5.   | **Comparisons, assertions and breaking down problems** | [Preparation](week1/preparation.md) | [Lesson plan](week1/lesson-plan.md) | [Homework](week1/homework.md) |
-| 5.   | **Test cases with Jest** | [Preparation](week2/preparation.md) | [Lesson plan](week2/lesson-plan.md) | [Homework](week2/homework.md) |
-| 7.   | **Grouping data: Arrays and Loops** | [Preparation](week3/preparation.md) | [Lesson plan](week3/lesson-plan.md) | [Homework](week3/homework.md) |
-| 8.   | **Grouping data: Objects** | [Preparation](week4/preparation.md) | [Lesson plan](week4/lesson-plan.md) | [Homework](week4/homework.md) |
-| 9.   | **The DOM** | [Preparation](week1/preparation.md) | [Lesson plan](week1/lesson-plan.md) | [Homework](week1/homework.md) |
-| 10.  | **UI Components** | [Preparation](week2/preparation.md) | [Lesson plan](week2/lesson-plan.md) | [Homework](week2/homework.md) |
-| 11.  | **State Rendering** | [Preparation](week3/preparation.md) | [Lesson plan](week3/lesson-plan.md) | [Homework](week3/homework.md) |
-| 12.   | **Fetch & Asynchronous** | [Preparation](week4/preparation.md) | [Lesson plan](week4/lesson-plan.md) | [Homework](week4/homework.md) |
-
-# External Documentation 
-
-External Documentation MASTERCLASS Content
+| 1 | **Version Control**  | [Preparation](/1-Onboarding/Week%201/preparation.md) | [Lesson plan](/1-Onboarding/Week%201/lesson-plan.md) | [Homework](/1-Onboarding/Week%201/homework.md) |
+| 2 | **Collecting and formatting data**  | [Preparation](/1-Onboarding/Week%202/preparation.md) | [Lesson plan](/1-Onboarding/Week%202/lesson-plan.md) | [Homework](/1-Onboarding/Week%202/homework.md) |
+| 3 | **Querying data, considering presentation**  | [Preparation](/1-Onboarding/Week%203/preparation.md) | [Lesson plan](/1-Onboarding/Week%203/lesson-plan.md) | [Homework](/1-Onboarding/Week%203/homework.md) |
+| 4 | **Programming Fundamentals** | [Preparation](/2-Structuring%20and%20testing%20data/week4/1-preparation.md) | [Lesson plan](/2-Structuring%20and%20testing%20data/week4/2-lesson-plan.md) | [Homework](/2-Structuring%20and%20testing%20data/week4/3-homework.md) |
+| 5 | **Comparisons, assertions and breaking down problems** | [Preparation](/2-Structuring%20and%20testing%20data/week5/1-preparation.md) | [Lesson plan](/2-Structuring%20and%20testing%20data/week5/2-lesson-plan.md) | [Homework](/2-Structuring%20and%20testing%20data/week5/3-homework.md) |
+| 6 | **Test cases with Jest** | [Preparation](/2-Structuring%20and%20testing%20data/week6/1-preparation.md) | [Lesson plan](/2-Structuring%20and%20testing%20data/week6/2-lesson-plan.md) | [Homework](/2-Structuring%20and%20testing%20data/week6/3-homework.md) |
+| 7 | **Grouping data: Arrays and Loops** | [Preparation](/3-Data_Groups/week7/1-preparation.md) | [Lesson plan](/3-Data_Groups/week7/2-lesson-plan.md) | [Homework](/3-Data_Groups/week7/3-homework.md) |
+| 8 | **Grouping data: Objects** | [Preparation](/3-Data_Groups/week8/1-preparation.md) | [Lesson plan](/3-Data_Groups/week8/2-lesson-plan.md) | [Homework](/3-Data_Groups/week8/3-homework.md) |
+| 9 | **The DOM** | [Preparation](/3-Data_Groups/week9/1-preparation.md) | [Lesson plan](/3-Data_Groups/week9/2-lesson-plan.md) | [Homework](/3-Data_Groups/week9/3-homework.md) |
+| 10 | **UI Components** | [Preparation](/4-Data_Flows/week10/1-preparation.md) | [Lesson plan](/4-Data_Flows/week10/2-lesson-plan.md) | [Homework](/4-Data_Flows/week10/3-homework.md) |
+| 11 | **State Rendering** | [Preparation](/4-Data_Flows/week11/1-preparation.md) | [Lesson plan](/4-Data_Flows/week11/2-lesson-plan.md) | [Homework](/4-Data_Flows/week11/3-homework.md) |
+| 12 | **Fetch & Asynchronous** | [Preparation](/4-Data_Flows/week12/1-preparation.md) | [Lesson plan](/4-Data_Flows/week12/2-lesson-plan.md) | [Homework](/4-Data_Flows/week12/3-homework.md) |
 
 
 
 
-> Please help us improve and share your feedback! If you find better tutorials
+### Contibuting
+
+Please help us improve and share your feedback! If you find better tutorials
 or links, please share them by [opening a pull request](https://github.com/HackYourFutureBelgium/Intro-to-Programming/pulls).
+
+
+
+This document uses content from [the Code your Future's curriculum](https://github.com/CodeYourFuture/Table-of-Contents?tab=readme-ov-file), which is licensed under [CC0 1.0 Universal](https://github.com/CodeYourFuture/Table-of-Contents?tab=CC0-1.0-1-ov-file).
