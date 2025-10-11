@@ -1,245 +1,539 @@
-# 📑 Index
+# How the internet works
 
-- [How the Internet Works](#how-the-internet-works)
-- [Technical Writing 101](#technical-writing-101)
-- [Rendering Data as UI](#rendering-data-as-ui)
-- [Now Showing](#now-showing)
-- [Step-through-prep Workshop](#step-through-prep-workshop)
-- [Rendering One Card](#rendering-one-card)
-- [Composing Elements](#composing-elements)
-- [Creating Elements with Functions](#creating-elements-with-functions)
-- [Creating Elements with `<template>`](#creating-elements-with-template)
-- [Reusable Components](#reusable-components)
-- [One-to-One Mappings](#one-to-one-mappings)
-- [Using `map`](#using-map)
-- [Applying `map`](#applying-map)
+## Learning Objectives
 
----
+- [ ] Describe what happens when a user enters a url into a browser
+- [ ] Explain the purpose of the HTTP protocol
+- [ ] Define a GET request in the HTTP protocol
 
-## How the Internet Works
+We’ve been using the internet for years, but how does it actually work? What happens when you type a URL into a browser? How does the browser know where to go? How does it know what to show? How does it know how to show it?<br>
 
-**Objective:** Understand how your browser, servers, and JavaScript connect.  
+## What is the Internet?
 
-1. **The journey of a website**  
-   - You type `example.com` → browser asks a **server** → server sends back HTML, CSS, JavaScript.  
-   - Browser **renders** the page → JavaScript makes it interactive.  
+[![WII](https://i.ytimg.com/vi/Dxcc6ycZ73M/maxresdefault.jpg)](https://youtu.be/Dxcc6ycZ73M)
 
-2. **Key concepts:**  
-   - Client (you) ↔ Server (computer elsewhere)  
-   - HTTP request/response cycle  
-   - Files (HTML, CSS, JS) working together  
+## Understanding networks
 
-📝 **Checkpoint:** Explain to a friend in one sentence what happens when they type a URL in their browser.
+[![UN](https://i.ytimg.com/vi/ZhEf7e4kopM/maxresdefault.jpg)](https://youtu.be/ZhEf7e4kopM)
 
----
+## HTTPS & HTML
 
-## Technical Writing 101
+[![UN](https://i.ytimg.com/vi/kBXQZMmiA4s/maxresdefault.jpg)](https://youtu.be/kBXQZMmiA4s)
 
-**Objective:** Learn how to clearly communicate code and concepts.  
+# [Technical Writing 101](https://github.com/CodeYourFuture/Module-Data-Groups/issues/1) 🔗
 
-- Write **step-by-step instructions**.  
-- Use **plain language** first, then **technical terms**.  
-- Add **comments in code** to explain why, not just what.  
+## Learning Objectives
 
-Example:  
+- [ ] Plan and author a technical document
+- [ ] Edit a technical document for clarity and correctness
 
-```js
-// BAD: just repeats the code
-let x = 10; // set x to 10
+### Objectives
 
-// GOOD: explains why
-let x = 10; // starting point for our counter
-````
+- [ ] Plan and author a technical document
+- [ ] Edit a technical document for clarity and correctness
 
-📝 **Try it yourself:** Take a code snippet and add helpful comments.
+## Link to the coursework
 
----
+[https://developers.google.com/tech-writing/one](https://developers.google.com/tech-writing/one)
 
-## Rendering Data as UI
+## Why are we doing this?
 
-**Objective:** Connect JavaScript data to what users see.
+Every engineer is also a writer.<br>
 
-We often start with **data**:
+This collection of courses and learning resources aims to improve your technical documentation. Learn how to plan and author technical documents. You can also learn about the role of technical writers at Google.<br>
 
-```js
-const movies = ["Shrek", "Finding Nemo", "Toy Story"];
+Take the prep course before class and do the in-class workshop… in class!<br>
+
+### Maximum time in hours (Tech has max 16 per week total)<br>
+
+### How to get help
+
+Arrange a mid week study session to work on this course together. Can you invite a native speaker to support you? What skills do you already have in your group? Has someone worked as a writer, teacher, translator, or journalist?<br>
+
+### How to submit
+
+There’s no submission step. Just use the course to improve all your technical writing, readmes, and docs as you progress.<br>
+
+# Rendering Data as UI
+
+## Learning Objectives
+
+- [ ] Explain how data is rendered into a user interface
+
+When we build user interfaces we often take data and render🧶(`rendering is the process of building an interface from some code`) it in the user interface. We will model some real-life objects using data structures such as arrays and objects. However, end users don’t directly interact with data structures. Instead, they’ll interact with a rendering of these data structures through some user interface, typically a web browser. We’re going to start with some structured data and explore how we can render it on the page.<br>
+
+# Cinema listings
+
+## Learning Objectives
+
+- [ ] Define an acceptance criterion for building a web page
+- [ ] Use a wireframe to make a basic design for the web page
+
+Suppose you’re building a user interface to display the films that are now showing on a film website. We need to render some cinema listings in the user interface. Let’s define an acceptance criterion:<br>
+
+### Given a list of film data
+### When the page first loads
+### Then it should display the list of films now showing, including the film title, times and film certificate.
+
+## Wireframe
+
+<img width="681" height="649" alt="image" src="https://github.com/user-attachments/assets/58335cfd-e32f-4985-8339-6a785a1d954e" />
+**A grid of cards displaying film information**<br>
+
+## Data
+
+Here are some example film data:<br>
+
+```javascript
+const films = [
+  {
+    title: "Killing of Flower Moon",
+    director: "Martin Scorsese",
+    times: ["15:35"],
+    certificate: "15",
+    duration: 112,
+  },
+  {
+    title: "Typist Artist Pirate King",
+    directory: "Carol Morley",
+    times: ["15:00", "20:00"],
+    certificate: "12A",
+    duration: 108,
+  },
+];
 ```
 
-We want to **render** it into HTML:
+To visualise the user interface, we can use a wireframe🧶(`A wireframe is a basic outline of a web page used for design purposes`). This films wireframe is built by reusing the same UI component🧶(`A UI component is a reusable, self-contained piece of the UI. UI components are like lego blocks you can use to build websites. Most websites are made by “composing” components in this way.`). Each film object is rendered as a card component. To build this user interface, we will start with data in the form of an array of objects, each with similar properties.<br>
+
+Our task will be to build the film listings view from this list of data.<br>
+
+Create an `index.html` file and follow along.
+
+# Step-through-pre-workshop
+
+[![Video](https://i.ytimg.com/vi/afd8g8I4474/maxresdefault.jpg)](https://youtu.be/afd8g8I4474)
+
+# Rendering one card
+
+## Learning Objectives
+
+- [ ] Define a sub-goal for rendering data in the user interface
+
+### 🎯 Sub-goal: Build a film card component
+
+To break down this problem, we’ll render a single datum, before doing this for the whole list. Here’s one film:<br>
+
+```javascript
+const film = {
+  title: "Killing of Flower Moon",
+  director: "Martin Scorsese",
+  times: ["15:35"],
+  certificate: "15",
+  duration: 112,
+};
+```
+
+Starting with this object, we’ll focus only on building this section of the user interface:<br>
+
+<img width="504" height="655" alt="image" src="https://github.com/user-attachments/assets/a7049c46-50b2-47ed-a11b-a9bf45e1042e" />
+A single film card
+
+# Composing elements
+
+## Learning Objectives
+
+- [ ] Compose UI elements to some specification
+- [ ] Append DOM elements to other nodes in the DOM tree
+
+We can start by calling createElement to create and compose DOM elements🧶(`To compose DOM elements means to combine DOM elements to form some part of the user interface.`).
+
+### Javascript
+
+```javascript
+const film = {
+  title: "Killing of Flower Moon",
+  director: "Martin Scorsese",
+  times: ["15:35"],
+  certificate: "15",
+  duration: 112,
+};
+
+const filmTitle = document.createElement("h3");
+filmTitle.textContent = film.title;
+console.log(filmTitle);
+```
+### HTML
 
 ```html
-<ul>
-  <li>Shrek</li>
-  <li>Finding Nemo</li>
-  <li>Toy Story</li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Film View</title>
+  </head>
+  <body>
+    <script>
+      const film = {
+        title: "Killing of Flower Moon",
+        director: "Martin Scorsese",
+        times: ["15:35"],
+        certificate: "15",
+        duration: 112,
+      };
+      const filmTitle = document.createElement("h3");
+      filmTitle.textContent = film.title;
+      console.log(filmTitle);
+    </script>
+  </body>
+</html>
 ```
 
-JavaScript can build this UI dynamically.
+## Appending elements
 
-📝 **Checkpoint:** Why is it useful to render from data instead of writing HTML manually?
+To display the film card, we need to append it to another element that is already in the DOM tree. For now let’s append it to the body, because that always exists.<br>
 
----
+```javascript
+const film = {
+  title: "Killing of Flower Moon",
+  director: "Martin Scorsese",
+  times: ["15:35"],
+  certificate: "15",
+  duration: 112,
+};
 
-## Now Showing
+const filmTitle = document.createElement("h3");
+filmTitle.textContent = film.title;
 
-We’ll build a small **movie list app**.
-At first: a static list. Later: interactive, reusable, dynamic.
-
-Example project preview:
-
+document.body.append(filmTitle);
 ```
-Now Showing 🎬
-- Shrek
-- Finding Nemo
-- Toy Story
+We can extend this card to include more information about the film by creating more elements:
+
+```javascript
+const film = {
+  title: "Killing of Flower Moon",
+  director: "Martin Scorsese",
+  times: ["15:35"],
+  certificate: "15",
+  duration: 112,
+};
+
+const card = document.createElement("section");
+
+const filmTitle = document.createElement("h3");
+filmTitle.textContent = film.title;
+card.append(filmTitle);
+
+const director = document.createElement("p");
+director.textContent = `Director: ${film.director}`;
+card.append(director);
+
+const duration = document.createElement("time");
+duration.textContent = `${film.duration} minutes`;
+card.append(duration);
+
+const certificate = document.createElement("data");
+certificate.textContent = `Certificate: ${film.certificate}`;
+card.append(certificate);
+
+document.body.append(card);
 ```
+Eventually, we will include all the information, to match the wireframe. This is a bit tedious, as we had to write lots of similar lines of code several times, but it works.
 
----
+# Creating elements with functions
 
-## Step-through-prep Workshop
+## Learning Objectives
 
-**Objective:** Learn to break problems into **steps** before coding.
+- [ ] Extract functions for common tasks
+- [ ] Identify benefits of using reusable functions
 
-1. Write down **inputs** (movies array).
-2. Define **outputs** (HTML list).
-3. Plan steps:
+We now have a card showing all of the information for one film. The code we have is quite repetitive and verbose. It does similar things lots of times.<br>
 
-   * Loop through movies
-   * Create an `<li>` for each
-   * Add it to the page
+Let’s look at two ways we could simplify this code. First we will explore extracting a function. Then we’ll look at using `<template>` tags.<br>
 
-📝 **Checkpoint:** Break down the recipe for making a sandwich into "input → steps → output". (Practice abstraction!)
+## Refactoring: Extracting a function
+One way we can simplify this code is to refactor it.
 
----
+<img width="690" height="89" alt="image" src="https://github.com/user-attachments/assets/2d22643e-bebb-48ad-b6cd-661f635d134c" />
 
-## Rendering One Card
+We can identify things we’re doing several times, and extract a function to do that thing for us.<br>
 
-**Objective:** Render one item visually.
+In this example, we keep doing these three things:<br>
 
-```html
-<div class="card">
-  <h2>Shrek</h2>
-</div>
+- 1 Create a new element (sometimes with a different tag name).
+- 2 Set that element’s text content (always to different values).
+- 3 Appending that element to some parent element (sometimes a different parent).
+We could extract a function which does these three things. The things which are different each time need to be parameters to the function.<br>
+
+We could write a function like this:<br>
+
+```javascript
+function createChildElement(parentElement, tagName, textContent) {
+  const element = document.createElement(tagName);
+  element.textContent = textContent;
+  parentElement.append(element);
+  return element;
+}
 ```
+And then rewrite our code to create the card like this:
 
-JavaScript version:
+```javascript
+const film = {
+  title: "Killing of Flower Moon",
+  director: "Martin Scorsese",
+  times: ["15:35"],
+  certificate: "15",
+  duration: 112,
+};
 
-```js
-const movie = "Shrek";
-const card = `<div class="card"><h2>${movie}</h2></div>`;
-document.body.innerHTML = card;
-```
-
-📝 **Try it yourself:** Change `"Shrek"` to your favorite movie.
-
----
-
-## Composing Elements
-
-**Objective:** Combine multiple elements into bigger UI.
-
-```js
-const title = `<h1>Now Showing</h1>`;
-const movieCard = `<div class="card"><h2>Shrek</h2></div>`;
-document.body.innerHTML = title + movieCard;
-```
-
-This is the first step toward **composition**.
-
----
-
-## Creating Elements with Functions
-
-**Objective:** Use functions to avoid repetition.
-
-```js
-function createCard(movie) {
-  return `<div class="card"><h2>${movie}</h2></div>`;
+function createChildElement(parentElement, tagName, textContent) {
+  const element = document.createElement(tagName);
+  element.textContent = textContent;
+  parentElement.append(element);
+  return element;
 }
 
-document.body.innerHTML = createCard("Shrek");
+const card = document.createElement("section");
+
+createChildElement(card, "h3", film.title);
+
+createChildElement(card, "p", `Director: ${film.director}`);
+
+createChildElement(card, "time", `${film.duration} minutes`);
+
+createChildElement(card, "data", `Certificate: ${film.certificate}`);
+
+document.body.append(card);
 ```
 
-📝 **Try it yourself:** Call `createCard` with 3 different movies.
+This code does exactly the same thing as the code we had before. By introducing a function we have introduced some advantages:<br>
 
----
+- 1 Our code is smaller, which can make it easier to read and understand what it’s doing.
+- 2 If we want to change how we create elements we only need to write the new code one time, not for every element. We could add a class attribute for each element easily.
+- 3 We can see that each element is being created the same way. Before, we would have to compare several lines of code to see this. Because we can see they’re calling the same function, we know they’re made the same way.
+- 4 We’re less likely to make mistakes copying and pasting the code. In the first version of this content, we actually wrote `duration.textContent = Certificate: ${film.certificate};` instead of `certificate.textContent = Certificate: ${film.certificate};` because we were just copying and pasting and missed an update. The less we need to copy and paste and update code, the less likely we are to miss an update.<br>
 
-## Creating Elements with `<template>`
+There are also some drawbacks to our refactoring:<br>
 
-**Objective:** Use HTML `<template>` for reusable patterns.
+- 1 If we want to change how we create some, but not all, elements, we may have made it harder to make these changes. When we want to include an image of the director, or replace the certificate text with a symbol, we will have to introduce branching logic.
+- 2 To follow how something is rendered, we need to look in a few places. This is something you will need to get used to, so it’s good to start practising now.
 
-```html
-<template id="card-template">
-  <div class="card"><h2></h2></div>
+# Creating elements with <template>
+
+## Learning Objectives
+
+- [ ] Use template tags to simplify element initialisation
+- [ ] Identify trade-offs between using functions vs template tags to create components
+
+### Using <template> tags
+
+We could simplify this code with a different technique for creating elements.<br>
+
+Until now, we have only seen one way to create elements: `document.createElement`. The DOM has another way of creating elements - we can copy existing elements and then change them.<br>
+
+HTML has a useful tag designed to help make this easy, [the <`template`> tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). When you add a `<template>` element to a page, it doesn’t get displayed when the page loads. It is an inert fragment of future HTML.<br>
+
+We can copy any DOM node, not just `<template>` tags. For this problem, we will use a `<template>` tag because it is designed for this purpose.<br>
+
+When we copy an element, its children get copied. This means we can write our template card as HTML:<br>
+
+```javascript
+<template id="film-card">
+  <section>
+    <h3>Film title</h3>
+    <p data-director>Director</p>
+    <time>Duration</time>
+    <data data-certificate>Certificate</data>
+  </section>
 </template>
 ```
 
-JavaScript:
+   This is our template card. Place it in the body of your html. It doesn’t show up! [Template HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) is like a wireframe; it’s just a *plan*. We can use this template to create a card for any film object. We will clone (copy) this template and populate it with data. Replace the contents of your `<script>` tag with this:
 
-```js
-const template = document.getElementById("card-template");
-const clone = template.content.cloneNode(true);
-clone.querySelector("h2").textContent = "Shrek";
-document.body.appendChild(clone);
+```javascript
+const film = {
+  title: "Killing of Flower Moon",
+  director: "Martin Scorsese",
+  times: ["15:35"],
+  certificate: "15",
+  duration: 112,
+};
+
+const card = document.getElementById("film-card").content.cloneNode(true);
+// Now we are querying our cloned fragment, not the entire page.
+card.querySelector("h3").textContent = film.title;
+card.querySelector(
+  "[data-director]"
+).textContent = `Director: ${film.director}`;
+card.querySelector("time").textContent = `${film.duration} minutes`;
+card.querySelector(
+  "[data-certificate]"
+).textContent = `Certificate: ${film.certificate}`;
+
+document.body.append(card);
+```
+This code will produce the same DOM elements in the page as the two other versions of the code we’ve seen (the verbose version, and the version using `createChildElement`).<br>
+
+The first two approaches (the verbose version, and the `createChildElement` version) did so by calling the same DOM functions as each other.<br>
+
+This approach uses different DOM functions. But it has the same effect.<br>
+
+### ✍️Exercise: Consider the trade-offs
+
+We’ve now seen two different ways of simplifying our function: extracting a function, or using a template tag.<br>
+
+Both have advantages and disadvantages.<br>
+
+Think of at least two trade-offs involved. What is better about the “extract a function” solution? What is better about the template tag solution? Could we combine them?<br>
+
+Share your ideas about trade-offs in a thread in Slack.
+
+# Reusable components
+
+## Learning Objectives
+
+- [ ] Implement components for a user interface
+
+Recall our sub-goal:<br>
+
+### 🎯 Sub-goal: Build a film card component
+---
+
+Now that we have made a card work for one particular film, we can re-use that code to render any film object in the user interface with a general component. To do this, we wrap up our code inside a JavaScript function. JavaScript functions reuse code: so we can implement reusable UI components using functions.<br>
+
+We could use either our createChildElement implementation or our <template> implementation - making a component function works the same for either. As an example, we will use the <template> implementation:<br>
+
+```javascript
+const film = {
+  title: "Killing of Flower Moon",
+  director: "Martin Scorsese",
+  times: ["15:35"],
+  certificate: "15",
+  duration: 112,
+};
+
+const template = document.getElementById("film-card");
+const createFilmCard = (film) => {
+  const card = template.content.cloneNode(true);
+  // Now we are querying our cloned fragment, not the entire page.
+  card.querySelector("h3").textContent = film.title;
+  card.querySelector(
+    "[data-director]"
+  ).textContent = `Director: ${film.director}`;
+  card.querySelector("time").textContent = `${film.duration} minutes`;
+  card.querySelector(
+    "[data-certificate]"
+  ).textContent = `Certificate: ${film.certificate}`;
+  // Return the card, rather than directly appending it to the page
+  return card;
+};
+const filmCard = createFilmCard(film);
+
+// Remember we need to append the card to the DOM for it to appear.
+document.body.append(filmCard);
 ```
 
----
+### ✍️Exercise: Use destructuring
 
-## Reusable Components
+Refactor the createFilmCard function to use object destructuring for the film parameters.<br>
 
-Functions + templates = **components**.
-They are the building blocks of modern frameworks (React, Vue, etc.).
+# One-to-one mappings
 
-📝 **Checkpoint:** Why do you think reusability saves time in coding?
+## Learning Objectives
 
----
+We can now render any one film data object in the UI. However, to fully solve this problem we must render a list of all of the film objects. For each film object, we need to render a corresponding film card in the UI. In this case, there is a one-to-one mapping🧶(`A one-to-one mapping associates every element in a set to exactly one element in another set`) between the data array and the UI components on the web page. Each item in the array matches a node in the UI. We can represent this diagrammatically by pairing up the data elements with their corresponding UI components:<br>
 
-## One-to-One Mappings
+<img width="472" height="205" alt="image" src="https://github.com/user-attachments/assets/10790f5d-dcb1-43ad-8f57-7395ea6a1eb3" />
 
-**Objective:** Map one piece of data to one piece of UI.
+### Given an array named *`films`*…
 
-Example: each movie → one `<li>`
+To create an array of card components we can iterate through the film data using a `for...of` loop:
 
-```js
-const movies = ["Shrek", "Finding Nemo", "Toy Story"];
-const items = movies.map(movie => `<li>${movie}</li>`);
-document.body.innerHTML = `<ul>${items.join("")}</ul>`;
-```
-
----
-
-## Using `map`
-
-* `map` transforms arrays into new arrays.
-* Works perfectly for **UI rendering**.
-
-Example:
-
-```js
-[1, 2, 3].map(n => n * 2); // [2, 4, 6]
-```
-
-📝 **Checkpoint:** What would `[1, 2, 3].map(n => n + 1)` return?
-
----
-
-## Applying `map`
-
-**Final Project:** Render a movie list with cards.
-
-```js
-const movies = ["Shrek", "Finding Nemo", "Toy Story"];
-
-function createCard(movie) {
-  return `<div class="card"><h2>${movie}</h2></div>`;
+```javascript
+const filmCards = [];
+for (const item of films) {
+  filmCards.push(createFilmCard(item));
 }
 
-const cards = movies.map(createCard).join("");
-document.body.innerHTML = `<h1>Now Showing</h1>${cards}`;
+document.body.append(...filmCards);
+// invoke append using the spread operator
 ```
 
-✅ You’ve built a **mini JavaScript app**!
+However, there are alternative methods for building this array of UI components.<br>
 
+# Using map
 
+## Learning Objectives
 
+-[ ] Describe how to use map
+
+We want to create a new array by applying a function to each element in the starting array. Earlier, we used a `for...of` statement to apply the function `createFilmCard` to each element in the array. However, we can also build an array using the [map array method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map). Map is a **higher order function**🧶(`A higher-order function is a function that takes another function as an argument or returns a new function`). In this case, it means we pass a function as an argument to `map`. Then `map` will use this function to create a new array.
+
+Work through this `map` exercise. It’s important to understand map before we apply it to our film data.
+
+```javascript
+const arr = [5, 20, 30];
+
+function double(num) {
+  return num * 2;
+}
+```
+
+Our goal is to create a new array of doubled numbers given this array and function. We want to create the array `[10, 40, 60]`. Look, it’s another “one to one mapping”.<br>
+
+<img width="414" height="298" alt="image" src="https://github.com/user-attachments/assets/47daf2f6-48de-435d-b4f7-6bf8d125ca65" />
+
+We are building a new array by applying `double` to each item. Each time we call `double` we store its return value in a new array:
+
+```javascript
+function double(num) {
+  return num * 2;
+}
+
+const numbers = [5, 20, 30];
+const doubledNums = [
+  double(numbers[0]),
+  double(numbers[1]),
+  double(numbers[2]),
+];
+```
+
+But we want to generalise this. Whenever we are writing out the same thing repeatedly in code, we probably want to make a general rule instead. We can do this by calling `map`:
+
+```javascript
+function double(num) {
+  return num * 2;
+}
+
+const numbers = [5, 20, 30];
+const doubledNums = numbers.map(double);
+```
+
+# Applying Map to our problem
+
+## Learning Objectives
+
+- [ ] Use map to render multiple film cards
+
+Now that we understand `map`, let’s ty to use it in our project.<br>
+
+Given the list of film data:
+
+```javascript
+const films = [
+  {
+    title: "Killing of Flower Moon",
+    director: "Martin Scorsese",
+    times: ["15:35"],
+    certificate: "15",
+    duration: 112,
+  },
+  {
+    title: "Typist Artist Pirate King",
+    director: "Carol Morley",
+    times: ["15:00", "20:00"],
+    certificate: "12A",
+    duration: 108,
+  },
+];
+```
+
+Use `createFilmCard` and `map` to create an array of film card components. In your local project, render this array of components in the browser.

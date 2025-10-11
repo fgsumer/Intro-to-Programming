@@ -1,176 +1,539 @@
-# 📚 Index
+# User Interfaces
 
-- [User Interfaces](#user-interfaces)
-- [Implementing a Character Limit](#implementing-a-character-limit)
-- [Step-through-Prep Workshop](#step-through-prep-workshop)
-- [Breaking Down the Strategy](#breaking-down-the-strategy)
-- [The DOM](#the-dom)
-- [Querying the DOM](#querying-the-dom)
-- [Calculating the Remaining Characters](#calculating-the-remaining-characters)
-- [Updating the Interface](#updating-the-interface)
-- [Timers](#timers)
-- [DOM Events](#dom-events)
-- [Reacting to Events](#reacting-to-events)
-- [Check Progress](#check-progress)
-- [Refactor](#refactor)
+- [ ] Define statis HTML
+- [ ] Explain why we interact with user interfaces
 
----
+User interfaces provide the gateway between a user and a complex application. When navigating the internet, we continually interact with web pages to access data and interact with complex web applications.
 
-## User Interfaces
-A **user interface (UI)** is how humans interact with software.  
-In JavaScript, we often make UIs dynamic: they **respond to input, clicks, and changes**.
+A web browser🧶(provides a user interface to interact with web pages.) is capable of fetching HTML documents from a server, and then rendering the document to create a user interface. If every time a user visits a website, they get the same plain HTML document back, we say this content is static.<br>
 
-👉 Example: A text box that shows how many characters you can still type.
+By static, we mean that the server’s job was just to hand over the HTML document, and then the browser takes over. A user may interact with the browser’s interface, e.g. to scroll, type in a text field, or drag-and-drop an image around, but this is done purely by interacting with the browser - the browser won’t talk to the server about this.<br>
 
----
+# Implementing a character limit
 
-## Implementing a Character Limit
-Imagine Twitter’s post box:  
-- You type text.  
-- It shows how many characters you have left.  
+## Learning Objectives
 
-We’ll recreate this.
+Let’s define a problem.<br>
 
-**HTML Starter Code:**
-```html
-<textarea id="tweetInput" maxlength="50"></textarea>
-<p id="charCount">50 characters left</p>
-````
+Suppose we’re working on a website where users will need to **comment** on articles. In the user interface, they’ll be provided with a `textarea` element where they can type their comment. However, there is a character limit of `200` characters on their comment. As users type in to the `textarea` they should get feedback on how many characters they’ve got left for their comment.<br>
 
----
+# 🏁 Starting point
 
-## Step-through-Prep Workshop
+In the user interface, we will start off with some static html:<br>
 
-Before writing JavaScript, we **plan the steps** (like a recipe).
-Cognitive science shows planning reduces **cognitive load**.
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section>
+      <h3>Example character limit comment component</h3>
+      <label for="comment-input">
+        Please enter your comment in the text area below
+      </label>
+      <textarea
+        id="comment-input"
+        name="comment-input"
+        rows="5"
+        maxlength="200"
+      ></textarea>
+      <p id="character-limit-info">You have 200 characters remaining</p>
+    </section>
+  </body>
+</html>
+```
+To implement the acceptance criterion, we’ll need to interact with the elements on the page. We’ll need a way to **access** and **update** elements based off user interactions.
 
-1. Find the text area.
-2. Find the counter.
-3. Detect when text changes.
-4. Update remaining characters.
+# Step-Through-Prep-Workshop
 
----
+[![Prep](https://i.ytimg.com/vi/0tI34jHLpkY/maxresdefault.jpg)](https://youtu.be/0tI34jHLpkY)
 
-## Breaking Down the Strategy
+# Breaking down the strategy
 
-We’ll **divide big problems into small ones** (chunking).
+## Learning Objectives
 
-* Step 1: Access the text box.
-* Step 2: Access the message.
-* Step 3: Calculate remaining characters.
-* Step 4: Display the result.
+- [ ] Break down a problem into a series of steps
 
----
+<img width="226" height="408" alt="image" src="https://github.com/user-attachments/assets/d3dd6496-4b83-4e00-ae08-b7cd2e7578c0" />
 
-## The DOM
+There are two times we may want to do this:
 
-The **Document Object Model (DOM)** represents your web page as a tree of objects.
-JavaScript lets us **query** and **change** the DOM.
+- 1 When the page first loads we should show the initial limit.
+- 2 Whenever the user adds or removes a character from the textarea, we want to update to show the remaining limit.
 
----
+<img width="601" height="389" alt="image" src="https://github.com/user-attachments/assets/db27a7e2-50bc-4af8-b5c9-21313df682fd" />
 
-## Querying the DOM
+Steps 2-4 will be the same, whether we’re doing this for the initial load or a subsequent update.<br>
 
-```js
-const textBox = document.getElementById("tweetInput");
-const counter = document.getElementById("charCount");
+This strategy gives us a rough guide for the road ahead. However, as we learn more about this problem, we may need to update our strategy.<br>
+
+# The DOM
+
+## Learning Objectives
+
+- [ ] Define the Document Object Model
+
+Let’s consider the starting HTML. We need a way of interacting with the elements of this page once it is rendered.<br>
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section>
+      <h3>Character limit</h3>
+      <label for="comment-input">
+        Please enter your comment in the text area below
+      </label>
+      <textarea
+        id="comment-input"
+        name="comment-input"
+        rows="5"
+        maxlength="200"
+      ></textarea>
+      <p id="character-limit-info">You have 200 characters remaining</p>
+    </section>
+  </body>
+</html>
 ```
 
-✅ Now `textBox` and `counter` are references to real HTML elements.
+# 🌳 HTML tree
 
----
+HTML documents form a [tree-like structure](https://en.wikipedia.org/wiki/Tree_structure). We start at the top html element and from there other html elements are nested inside.<br>
 
-## Calculating the Remaining Characters
+<img width="618" height="501" alt="image" src="https://github.com/user-attachments/assets/1807ee73-6c2f-49f8-adff-e444a7f5aa95" />
 
-```js
-function updateCounter() {
-  const max = 50;
-  const remaining = max - textBox.value.length;
-  return remaining;
+When we use a web browser, it takes this HTML document, and provides us with an interface - a visual representation of the document, which we can read, and interact with (e.g. with a keyboard and mouse).
+
+### Document Object Model
+When the browser first renders a web page it also creates the DOM - short for Document Object Model🧶(
+The Document Object Model is a data representation of the content in a web page. All HTML elements are represented as objects that can be accessed, modified and deleted.)<br>
+
+Just like a web browser provides us a visual interface, the DOM is an interface. But it is not an interface for humans to see and interact with, it is an interface for JavaScript to interact with. We can write JavaScript programs to interact with the Document Object Model so we can make the page interactive.<br>
+
+<img width="598" height="189" alt="image" src="https://github.com/user-attachments/assets/0e6e4649-3b60-4123-b47a-45dbe1946952" />
+
+# Querying the DOM
+
+- [ ] Access elements in the DOM using selector methods
+
+Inside the **body** of the html document, we start with the following html:
+
+```javascript
+<section>
+  <h3>Character limit</h3>
+  <label for="comment-input">
+    Please enter your comment in the text area below
+  </label>
+  <textarea
+    id="comment-input"
+    name="comment-input"
+    rows="5"
+    maxlength="200"
+  ></textarea>
+  <p id="character-limit-info">You have 200 characters remaining</p>
+</section>
+```
+
+## querySelector()
+
+<img width="591" height="95" alt="image" src="https://github.com/user-attachments/assets/ba9d2a2b-9d2b-43c1-9150-8f2a41ab2026" />
+
+The DOM is an interface. It represents HTML elements as objects and provides functions to access these objects. Let’s start by accessing the `textarea` element and its value. To access DOM elements, we can use a method on the DOM API - [document.querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector).
+
+We can create a Javascript file, `script.js`, and link it to the HTML document using a script element:<br>
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <section>
+      <h3>Character limit</h3>
+      <label for="comment-input">
+        Please enter your comment in the text area below
+      </label>
+      <textarea
+        id="comment-input"
+        name="comment-input"
+        rows="5"
+        maxlength="200"
+      ></textarea>
+      <p id="character-limit-info">You have 200 characters remaining</p>
+    </section>
+  </body>
+</html>
+```
+Inside `script.js`, we can call `document.querySelector`:
+
+```javascript
+const textarea = document.querySelector("textarea");
+```
+
+`document.querySelector` takes a single argument a string containing a CSS selector (just like we use when defining what elements a CSS rule should apply to).<br>
+
+`document.querySelector`returns an element object representing the first element in the page which matches that CSS selector. This element object lets us inspect and modify the element in the page.<br>
+
+Here we have given it the string `"textarea"`, which is the CSS selector used to look up the elements with tag name `textarea`. The function returns an element object, which represents the first `textarea` in the web page. Once we can access the `textarea` object, we can access its properties. In particular we want to access the value a user types into the `textarea box`. We can do this by accessing the value property:
+
+```javascript
+const textarea = document.querySelector("textarea");
+console.log(textarea.value); // evaluates to the value typed by the user
+```
+
+### 🕹️🖲️ Follow along
+- 1 On your local machine, set up a new directory with an index.html and script.js.
+- 2 Make sure you start with the same static HTML as the example above.
+- 3 Double-check your script file is linked to your html file.
+- 4 Try querying the DOM and accessing various elements like the textarea element.
+- 5 Try typing in the textarea element, and then accessing its value property in Dev Tools.
+
+# Calculating the remaining characters
+
+- [ ] Access properties representing HTML attributes
+
+We want to implement Step 3: Calculate the number of characters left.<br>
+
+Let’s break down Step 3 into sub-goals:
+
+<img width="206" height="267" alt="image" src="https://github.com/user-attachments/assets/83c3f778-5605-4593-9b32-b4c0bdf198df" />
+
+## Getting information from the DOM
+We have seen that the DOM exposes live information about HTML elements in the page via properties on the objects it returns.<br>
+
+We wrote textarea.value to get the characters already typed. This solves Step 3.2 - we can write textarea.value.length.<br>
+
+We can also access the character limit, because it’s defined as the maxlength attribute of the HTML textarea.<br>
+
+In the Dev Tools console, if you type textarea.max you should see autocomplete for a property called maxLength.<br>
+
+Most HTML attributes are exposed in the DOM as a property with the same name (but in camelCase). Let’s try:
+
+```javascript
+console.log(textarea.maxLength);
+```
+Now that we have the character limit (from textarea.maxLength), and the number of characters already typed (from textarea.value.length):
+
+```javascript
+const remainingCharacters = textarea.maxLength - textarea.value.length;
+console.log(remainingCharacters);
+```
+
+Try typing in your textarea, then running this in the Dev Tools console.<br>
+
+# Updating the interface
+
+## Learning Objectives
+
+- [ ] Access and modify the textContent of a html element
+
+We know we don’t want to always have the number “200” in the text “You have 200 characters remaining”.<br>
+
+We’ve solved Step 3: Calculate the number of characters left. So we know what value we want to show..<br>
+
+All that remains is:.<br>
+
+- 1 To solve Step 4: Update the interface with the number of characters left.
+- 2 To make this happen on page load.
+- 3 To make this also happen when the textarea changes..<br>
+
+Instead of writing that text exactly in our HTML, we can use the DOM to set the contents of our `p` tag.<br>
+
+We can do this by querying the DOM for the element we want to update, and setting its `innerText` property. `innerText` is a property that represents “the text inside the element”.
+
+If we change the value of a property in the DOM, it will update the page we’re viewing.
+
+Try writing adding this to your `script.js`:
+
+```javascript
+const limitDisplay = document.querySelector("#character-limit-info");
+limitDisplay.innerText = "You have loaded the page.";
+```
+
+Even though our HTML said the paragraph should contain “You have 200 characters remaining”, we replaced this text by using the DOM.<br>
+
+### Step 4: Update the interface with the number of characters left.
+
+To achieve this goal, we’ll need to access the `p` element with id `"character-limit-info"` and then update its text content. As before, we can use `document.querySelector` to access an element in the DOM using an appropriate CSS selector:
+
+```javascript
+const textarea = document.querySelector("textarea");
+const remainingCharacters = textarea.maxLength - textarea.value.length;
+
+const charactersLeftP = document.querySelector("#character-limit-info");
+charactersLeftP.textContent = `You have ${remainingCharacters} characters remaining`;
+```
+
+And we can remove the initial text from the `p` tag from our HTML.
+
+We want to do this because we have another way of setting this. If we wanted to change the text (e.g. to “You **only** have 200 characters remaining”), or change the character limit, we only want to change that one place (in our JavaScript). If we leave the initial value in the HTML, it could get out of date.
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section>
+      <h3>Character limit</h3>
+      <label for="comment-input">
+        Please enter your comment in the text area below
+      </label>
+      <textarea
+        id="comment-input"
+        name="comment-input"
+        rows="5"
+        maxlength="200"
+      ></textarea>
+      <p id="character-limit-info"></p>
+    </section>
+  </body>
+</html>
+```
+
+We are now *computing* and *setting* the character limit info using the DOM on page load.
+
+# Timers
+
+To update the DOM, it’s helpful to understand the idea of timers and callbacks🧶 (A callback is a function you pass as an argument to another function. The callback runs after the main function has finished its execution.).
+
+```javascript
+function printMessage(name) {
+  console.log(`My name is ${name}`);
 }
+
+printMessage("Sally");
+printMessage("Daniel");
 ```
 
----
+In this example, we have 2 different parts: **function declaration** and **function calls**. We define the function `printMessage` and we call this function twice. However, sometimes we may want to define a function but have it called back at a later point in time. Consider another example:
 
-## Updating the Interface
-
-```js
-function updateUI() {
-  const remaining = updateCounter();
-  counter.textContent = `${remaining} characters left`;
+```javascript
+function printMessage(name) {
+  console.log(`My name is ${name}`);
 }
+
+setTimeout(printMessage, 3000, "Sally"); // <-- Call printMessage after at least 3000ms, with the argument "Sally"
+printMessage("Daniel");
 ```
 
----
+In this example, we define the function and call `printMessage` just once. We also call it ourselves once. We’re also using a built-in function called `setTimeout`. `setTimeout` allows us to set a minimum amount of time after which a function will be called back.
 
-## Timers
+```javascript
+setTimeout(printMessage, 3000, "Sally");
+```
+Let’s break this down this call to ´setTimeout`. It is saying:<br>
 
-We can run code every X milliseconds with `setInterval`.
-Example: Check typing progress every half second.
+`“After at least 3000 ms, call the function printMessage, and when you call back printMessage, pass the input of "Sally" to printMessage.”`
 
-```js
-setInterval(updateUI, 500);
+Notice we’re saying at least 3000 ms because setTimeout guarantees a minimum amount of time: it doesn’t say that printMessage must be called exactly after 3000 ms. In this example, we say that printMessage is a callback function🧶(A callback function is a function that is passed as an argument to another function. We ourselves don’t call the callback function - something else will call it for us at the right time.) as it is called back after 3000 milliseconds.<br>
+
+Run this code in your terminal. In the terminal, you’ll see “Daniel” appear first. After at least a 3000 ms delay, you will see console log of “Sally”. Now play computer with some different combinations of timeouts and function calls. Set timeouts on a series of simple functions you can write yourself. Play with the numbers and line orders, and see if you can predict the execution order reliably.<br>
+
+We will explore callbacks in more detail later on.
+
+# DOM Events
+
+- [ ] Describe an event in the browser environment
+- [ ] Update the strategy for implementing a character limit component
+
+In the case of the `textarea` element, we want to update the `p` element text **every time the user types inside the textarea.** In other words, we want our application to **react** to the **user typing on the keyboard.** Currently our plan looks like this:<br>
+
+<img width="588" height="387" alt="image" src="https://github.com/user-attachments/assets/90fb6cf7-c424-45bb-a9f4-4c99afa565ff" />
+
+### 📖Definition: events
+
+An [event](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events) is something that occurs in a programming environment that can be observed or responded to.<br>
+
+Events are things that happen in the browser, which your code can ask to be told about, so that your code can react to them. In a browser context, an event could be:<br>
+
+- a user clicking on a button
+- a user typing something into a textarea box
+- a user submitting a form
+- and so on.
+- 
+Not all events are in response to user actions. You can think of events as “interesting changes”. For instance, there is an event for the browser completing its initial render of the page. You can find a [complete reference all the different event types](https://developer.mozilla.org/en-US/docs/Web/Events) on MDN.<br>
+
+When a user presses a key in our `textarea`, the browser will create an event. If we asked the browser to tell us about it, we can respond to it. So we can update our plan as follows:
+
+<img width="609" height="288" alt="image" src="https://github.com/user-attachments/assets/91be9411-8a23-4dbb-aa7d-d3322db3100c" />
+
+Notice a few things here:<br>
+
+- There’s no arrow between Step 3 and Step 4. The trigger for Step 4 is a user doing something. If the user doesn’t type anything in the textarea, Step 4 will not run after the first load (and neither will Step 5 and Step 6).
+- We don’t run Step 4. The browser runs Step 4. In Step 3 we asked the browser to do something for us in the future. **This is something new.** Up until now, we have always been the ones telling JavaScript what to do next.
+
+# Reacting to events
+
+- [ ] Identify the syntactic features of a call to addEventListener
+- [ ] Explain when an event listener is called
+
+As a user, we interact with the elements on a web page. We click on buttons, input text, submit forms etc.<br>
+
+To react to an event, we can declare a function that we want to run whenever a certain event occurs. We call this function an **event handler.** In the example below, we name this function `updateCharacterLimit`:
+
+```javascript
+const textarea = document.querySelector("textarea");
+
+function updateCharacterLimit() {}
+```
+We need to tell the browser to call `updateCharacterLimit` whenever a **keyup** event **fires**🧶(“fires” means “an event is triggered”.). We do this using addEventListener:
+
+```javascript
+const textarea = document.querySelector("textarea");
+
+function updateCharacterLimit() {}
+
+textarea.addEventListener("keyup", updateCharacterLimit);
 ```
 
----
+Let’s break down the arguments that are passed to `addEventListener`.<br>
 
-## DOM Events
+- `"keyup"` - this is the type of event we want to be notified about
+- `updateCharacterLimit` - the second argument is a function. It is a function that is called when an event occurs.
+  
+In JavaScript, we can pass functions as arguments to other functions. In this case, we’re passing a function `updateCharacterLimit` to `addEventListener` as an input. We can think of this as saying: whenever a key is released on the `textarea` element, then the browser will call the function `updateCharacterLimit`. Any code we want to run in response to the `keyup` event will need to be inside the `updateCharacterLimit` function.<br>
 
-A better way than timers is **events**.
-Events fire exactly when something happens.
+## Javascript
 
-```js
-textBox.addEventListener("input", updateUI);
+We can add a log to `updateCharacterLimit` to check it is called every time the `"keyup"` event fires.
+
+```javascript
+// We already had the top part of this code before.
+
+const textarea = document.querySelector("textarea");
+const remainingCharacters = textarea.maxLength - textarea.value.length;
+
+const charactersLeftP = document.querySelector("#character-limit-info");
+charactersLeftP.innerText = `You have ${remainingCharacters} characters remaining`;
+
+// From here down is new.
+
+function updateCharacterLimit() {
+  console.log(
+    "keyup event has fired... The browser called updateCharacterLimit..."
+  );
+}
+
+textarea.addEventListener("keyup", updateCharacterLimit);
 ```
 
-Now the UI updates instantly when typing.
+# Check progress
 
----
+## Learning Objectives
 
-## Reacting to Events
+- [ ] Use a plan to check progress in solving a problem
 
-We’ve now created a **responsive UI**:
+Let’s use the plan from earlier to check our progress.
 
-* User types → JavaScript reacts → UI updates.
+<img width="611" height="291" alt="image" src="https://github.com/user-attachments/assets/9a454fc9-1903-46b5-b5b5-2d01e89c960c" />
 
-This is the **core of interactive programming**.
+Let’s consider our code at the moment:
 
----
+```javascript
+const textarea = document.querySelector("textarea");
+const remainingCharacters = textarea.maxLength - textarea.value.length;
 
-## Check Progress
+const charactersLeftP = document.querySelector("#character-limit-info");
+charactersLeftP.innerText = `You have ${remainingCharacters} characters remaining`;
 
-📝 Quick quiz:
+function updateCharacterLimit() {
+  console.log(
+    "keyup event has fired... The browser called updateCharacterLimit..."
+  );
+}
 
-1. What does the DOM represent?
-2. Which method finds an element by ID?
-3. Why are events better than timers here?
-
-Try answering without looking back (retrieval practice).
-
----
-
-## Refactor
-
-Good developers **refactor**: improve code without changing behavior.
-
-Example: Combine functions into a cleaner version:
-
-```js
-const textBox = document.getElementById("tweetInput");
-const counter = document.getElementById("charCount");
-const max = 50;
-
-textBox.addEventListener("input", () => {
-  const remaining = max - textBox.value.length;
-  counter.textContent = `${remaining} characters left`;
-});
+textarea.addEventListener("keyup", updateCharacterLimit);
 ```
 
----
+We’ve done the following:<br>
 
-✅ Congratulations! You’ve built your **first interactive UI with JavaScript**.
-Next step: experiment with different limits, styles, or even add a **warning when near the limit**.
+✅ Step 1: Defined a characterLimit<br>
+✅ Step 2: Accessed the textarea element<br>
+✅ Step 3: Registered an event handler updateCharacterLimit<br>
+✅ Step 5: Calculate the number of characters left<br>
+✅ On initial page load, update the user interface with the number of characters left<br>
 
+The browser will do the following for us:<br>
 
+✅ Step 4: The browser will tell us when a user has pressed a key<br>
 
+We must still complete the following steps:<br>
 
+✅ Step 6: Update the user interface with the number of characters left<br>
+
+We can re-use our existing code to update the user interface when the browser tells us the user has pressed a key:
+
+```javascript
+const textarea = document.querySelector("textarea");
+const remainingCharacters = textarea.maxLength - textarea.value.length;
+
+const charactersLeftP = document.querySelector("#character-limit-info");
+charactersLeftP.innerText = `You have ${remainingCharacters} characters remaining`;
+
+function updateCharacterLimit() {
+  const remainingCharacters = textarea.maxLength - textarea.value.length;
+  const charactersLeftP = document.querySelector("#character-limit-info");
+  charactersLeftP.innerText = `You have ${remainingCharacters} characters remaining`;
+}
+
+textarea.addEventListener("keyup", updateCharacterLimit);
+```
+
+Typing in to the `textarea` element, we should see the page get updated to say e.g. “You have 118 characters left”.<br>
+
+# Refactor
+
+- [ ] Identify and remove duplicated code
+
+We have two identical blocks of code:
+
+```javascript
+const textarea = document.querySelector("textarea");
+const remainingCharacters = textarea.maxLength - textarea.value.length;
+
+const charactersLeftP = document.querySelector("#character-limit-info");
+charactersLeftP.innerText = `You have ${remainingCharacters} characters remaining`;
+
+function updateCharacterLimit() {
+  const remainingCharacters = textarea.maxLength - textarea.value.length;
+  const charactersLeftP = document.querySelector("#character-limit-info");
+  charactersLeftP.innerText = `You have ${remainingCharacters} characters remaining`;
+}
+
+textarea.addEventListener("keyup", updateCharacterLimit);
+```
+
+We know that functions can be used to avoid duplication. We have actually already extracted a function for this functionality for the event handler! Now let’s call it from the other place we do the same thing:
+
+```javascript
+const textarea = document.querySelector("textarea");
+
+updateCharacterLimit();
+
+function updateCharacterLimit() {
+  const remainingCharacters = textarea.maxLength - textarea.value.length;
+  const charactersLeftP = document.querySelector("#character-limit-info");
+  charactersLeftP.innerText = `You have ${remainingCharacters} characters remaining`;
+}
+
+textarea.addEventListener("keyup", updateCharacterLimit);
+```
+
+<img width="596" height="109" alt="image" src="https://github.com/user-attachments/assets/eafca050-97d5-4ed6-8a06-d6cfd410fffa" />
